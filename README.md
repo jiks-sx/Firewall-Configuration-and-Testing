@@ -1,15 +1,45 @@
-# Firewall Configuration & Testing (Practical – VM Based)
+# Task 10: Firewall Configuration & Testing  
+## (Windows Host + Kali Linux in VMware)
+
+---
 
 ## Overview
 
-The task focuses on understanding **firewall concepts**, **rule configuration**,
-and **practical testing using virtual machines**.
+This repository documents **Task 10: Firewall Configuration & Testing**
+performed as part of a cybersecurity internship.
 
-The practical implementation is carried out using:
-- **Kali Linux** as a testing machine
-- **Linux (Ubuntu)** as a firewall-protected system
+The task focuses on **understanding firewall concepts deeply** and
+**performing hands-on practical testing** using:
 
-All activities are **defensive, legal, and performed in a controlled lab environment**.
+- **Windows laptop as the firewall-protected system**
+- **Kali Linux (VMware) as a controlled testing machine**
+
+The firewall used in this task is **Windows Defender Firewall**.
+All testing is performed in an **isolated, legal, and safe lab environment**.
+
+---
+
+## Lab Environment
+
+### Systems Used
+
+| System | Role |
+|------|-----|
+| **Windows (Host OS)** | Firewall-configured system |
+| **Kali Linux (VMware)** | Network testing machine |
+
+---
+
+### Network Configuration
+
+- VMware Network Mode: **Host-Only Adapter** (preferred)
+- No direct internet exposure
+- Example IPs:
+  - Windows Host: `192.168.XX.XXX`
+  - Kali Linux VM: `192.168.XX.XX`
+
+This setup ensures ethical testing and prevents accidental access
+to external systems.
 
 ---
 
@@ -18,47 +48,28 @@ All activities are **defensive, legal, and performed in a controlled lab environ
 The objectives of this task are:
 
 - Understand firewall fundamentals and working principles
-- Learn stateful and stateless firewall behavior
-- Configure firewall rules using UFW
-- Allow and deny specific ports
-- Test connectivity from Kali Linux
-- Observe firewall logs
-- Block a malicious IP address
-- Analyze the impact of firewall rules
+- Study how **Windows Defender Firewall** filters network traffic
+- Learn **stateful firewall behavior**
+- Configure inbound firewall rules
+- Allow and block specific network ports
+- Test firewall rules from Kali Linux
+- Observe blocked and allowed traffic
+- Analyze firewall logs
+- Simulate IP-based blocking
+- Understand firewall impact and limitations
 
 ---
 
-## Lab Architecture
+## Tools & Technologies Used
 
-### Virtual Machines Used
-
-| VM | Role |
-|----|----|
-| Kali Linux | Connectivity tester / security testing machine |
-| Ubuntu Linux | Firewall-configured target system |
-
-### Network Configuration
-
-- Host-Only Adapter or Internal Network
-- No internet-facing exposure
-- Example IPs:
-  - Kali Linux: `192.168.56.101`
-  - Ubuntu Linux: `192.168.56.102`
-
-This setup ensures **safe, legal, and isolated testing**.
-
----
-
-## Tools Used
-
-- **UFW (Uncomplicated Firewall)** – Linux host-based firewall
-- **iptables** (conceptual understanding)
-- **Kali Linux utilities**:
-  - ping
-  - ssh
-  - nmap
-  - netcat (nc)
-- **Ubuntu Linux** as firewall target
+- **Windows Defender Firewall**
+- **Windows Event Viewer** (log analysis)
+- **Kali Linux (VMware)**
+- Kali Linux tools:
+  - `ping` – connectivity testing
+  - `nmap` – port visibility testing (local lab only)
+  - `netcat (nc)` – port allow/deny verification
+- VMware Workstation / Player
 
 ---
 
@@ -66,44 +77,57 @@ This setup ensures **safe, legal, and isolated testing**.
 
 ### Firewall Fundamentals
 - Network traffic filtering
+- Trust boundary between systems
 - Default deny principle
 - Least privilege networking
 
-### Stateful vs Stateless Firewalls
-- Packet inspection
+---
+
+### Stateful Firewall Behavior
 - Connection tracking
 - Session awareness
+- Automatic handling of return traffic
 
-### Inbound and Outbound Rules
-- Incoming traffic control
-- Outgoing traffic restrictions
-- Malware communication prevention
+---
 
-### Firewall Logging
-- Visibility into blocked and allowed traffic
-- Incident detection
-- Audit and troubleshooting support
+### Inbound Firewall Rules
+- Controlling incoming traffic
+- Port-based access control
+- Reducing attack surface
+
+---
+
+### Firewall Logging & Monitoring
+- Visibility into blocked connections
+- Understanding traffic patterns
+- Supporting investigation and troubleshooting
+
+---
 
 ### IP Blocking
-- Temporary containment strategy
-- Response to suspicious activity
-- Limitations of IP-based filtering
+- Blocking a specific source IP
+- Temporary containment of suspicious activity
+- Understanding limitations of IP-based filtering
 
 ---
 
 ## Practical Activities Performed
 
-- Verified baseline connectivity before firewall rules
-- Enabled UFW with default deny inbound policy
-- Allowed SSH access securely
-- Allowed and denied specific ports
-- Tested connectivity from Kali Linux
-- Enabled and analyzed firewall logs
-- Blocked Kali IP to simulate malicious behavior
-- Restored access by removing rules
-- Analyzed firewall impact and limitations
+The following practical steps were completed:
 
-Each step includes **commands, observations, and security reasoning**.
+- Verified network connectivity between Kali VM and Windows host
+- Performed baseline connectivity and port testing
+- Enabled Windows Defender Firewall
+- Observed default inbound traffic blocking
+- Created inbound firewall rules
+- Allowed specific ports and blocked unused ports
+- Tested allowed and blocked ports from Kali Linux
+- Enabled and reviewed firewall logs
+- Blocked Kali VM IP to simulate suspicious behavior
+- Verified complete traffic blocking
+- Analyzed security and operational impact
+
+Each practical step includes **commands, observations, and security reasoning**.
 
 ---
 
@@ -111,41 +135,43 @@ Each step includes **commands, observations, and security reasoning**.
 
 By completing this task, the following skills were developed:
 
-- Practical firewall configuration
-- Understanding of network access control
+- Practical understanding of Windows Firewall
+- Hands-on firewall rule configuration
 - Safe use of Kali Linux for defensive testing
+- Network access control validation
 - Firewall log analysis
-- Risk and impact assessment
-- Real-world SOC and system administration mindset
+- Blue-team and SOC-oriented security mindset
 
 ---
 
 ## Deliverables
 
-- Firewall rules documentation
-- Practical VM-based testing results
-- Impact and security analysis
-- Interview-ready understanding of firewall operations
+- Deep theoretical documentation (`docs/`)
+- Step-by-step practical labs (`labs/`)
+- Firewall configuration and testing results
+- Interview-ready understanding of firewall concepts
 
 ---
 
 ## Disclaimer
 
-All testing in this repository was performed:
+All testing performed in this repository:
 
-- On self-owned virtual machines
-- In an isolated lab environment
-- For educational and internship purposes only
+- Was conducted on self-owned systems
+- Used isolated virtual machines
+- Was done strictly for educational and internship purposes
 
-Unauthorized testing of real-world systems is illegal and unethical.
+Testing real-world or unauthorized systems is illegal and unethical.
 
 ---
 
 ## Conclusion
 
-Firewalls are a critical security control for reducing network-based attacks.
+Firewalls are a critical defensive security control used to reduce
+network-based threats.  
 This task demonstrates how firewalls are **configured, tested, monitored,
-and analyzed in real environments** using Kali Linux and Linux firewalls.
+and analyzed** using **Windows Defender Firewall** and **Kali Linux**
+in a controlled virtual environment.
 
-Firewalls do not stop all attacks, but when correctly configured and tested,
-they significantly reduce an organization’s attack surface.
+Firewalls alone cannot stop all attacks, but when properly configured
+and tested, they significantly reduce an organization’s attack surface.
