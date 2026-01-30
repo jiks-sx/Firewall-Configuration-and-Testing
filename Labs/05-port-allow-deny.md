@@ -20,7 +20,7 @@ To control access using firewall rules.
 
 ## Test from Kali
 Command:
-> nc -zv <windows-ip> 22
+> nc -zv windows-ip 22
 
 ### Expected Result
 > Connection succeeds.
